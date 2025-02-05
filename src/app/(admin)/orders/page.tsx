@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import OrdersGrid from "@/components/orders-grid";
 
-
 export default function OrdersPage() {
   const { isLoaded, user } = useUser();
   const router = useRouter();
@@ -20,8 +19,12 @@ export default function OrdersPage() {
   }, [isLoaded, user, router]);
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center min-h-screen text-lg sm:text-xl">Loading...</div>;
   }
 
-  return <OrdersGrid />;
+  return (
+    <div className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <OrdersGrid />
+    </div>
+  );
 }
