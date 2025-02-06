@@ -42,6 +42,28 @@ const mockCustomers = [
     joined: "2022-11-02",
     status: "active",
   },
+  {
+    id: "CUST-003",
+    name: "Amber Brown",
+    email: "amber@example.com",
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+    location: "New York, USA",
+    orders: 13,
+    spent: 3876.99,
+    joined: "2023-03-02",
+    status: "active",
+  },
+  {
+    id: "CUST-004",
+    name: "Smith Johnson",
+    email: "smJonh@example.com",
+    avatar: "https://randomuser.me/api/portraits/men/2.jpg",
+    location: "Ontario, Canada",
+    orders: 5,
+    spent: 1876.99,
+    joined: "2020-03-02",
+    status: "active",
+  },
 ];
 
 export default function CustomersGrid() {

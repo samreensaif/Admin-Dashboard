@@ -52,7 +52,7 @@ const monthlyRevenue = [
 
 export default function StatisticsCharts() {
   return (
-    <div className="space-y-8 p-4 sm:p-6 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
+    <div className="space-y-8 p-4 ml-0 sm:ml-64 sm:p-6 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
