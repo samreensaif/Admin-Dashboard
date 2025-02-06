@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
   if (isAuthenticated && isSignInPage) {
     return NextResponse.redirect(new URL("/", request.url))
   }
-
+ 
   return NextResponse.next()
 }
 

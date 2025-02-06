@@ -1,11 +1,13 @@
-"use client"
 
-import { useState } from "react"
-import { Search, Star, ShoppingBag, CalendarDays } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+
+"use client";
+
+import { useState } from "react";
+import { Search, Star, ShoppingBag, CalendarDays } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +15,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
+} from "@/components/ui/pagination";
 
 const mockReviews = [
   {
@@ -56,21 +58,21 @@ const mockReviews = [
     product: "Wireless Charging Pad",
     date: "2024-03-11",
   },
-]
+];
 
 export default function ReviewsGrid() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 6
-  const totalPages = Math.ceil(mockReviews.length / itemsPerPage)
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(mockReviews.length / itemsPerPage);
 
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentReviews = mockReviews.slice(indexOfFirstItem, indexOfLastItem)
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentReviews = mockReviews.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (page: number) => {
-    if (page < 1 || page > totalPages) return
-    setCurrentPage(page)
-  }
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
@@ -78,29 +80,31 @@ export default function ReviewsGrid() {
         key={index}
         className={cn(
           "h-4 w-4 transition-all duration-300",
-          index < rating ? "fill-yellow-400 stroke-yellow-400" : "fill-gray-200 stroke-gray-300",
+          index < rating ? "fill-yellow-400 stroke-yellow-400" : "fill-gray-200 stroke-gray-300"
         )}
       />
-    ))
-  }
+    ));
+  };
 
   return (
-    <div className="space-y-8 p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+    <div className="space-y-8 p-6 ml-0 sm:ml-64 sm:p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 min-h-screen">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
           Customer Reviews
         </h1>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center gap-4">
-        <div className="relative flex-1 w-full">
+      {/* Search & Filter */}
+      <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
+        <div className="relative flex-1 w-full sm:max-w-sm">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search reviews..." className="pl-10 w-full shadow-sm" />
         </div>
 
-        <div className="flex gap-4 w-full sm:w-auto">
+        <div className="w-full sm:w-auto">
           <Select defaultValue="all">
-            <SelectTrigger className="w-[140px] shadow-sm">
+            <SelectTrigger className="w-full sm:w-[140px] shadow-sm">
               <SelectValue placeholder="Filter by rating" />
             </SelectTrigger>
             <SelectContent>
@@ -115,7 +119,8 @@ export default function ReviewsGrid() {
         </div>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Reviews Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentReviews.map((review) => (
           <Card
             key={review.id}
@@ -157,14 +162,15 @@ export default function ReviewsGrid() {
         ))}
       </div>
 
+      {/* Pagination */}
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="flex-wrap justify-center sm:justify-start">
           <PaginationItem>
             <PaginationPrevious
               href="#"
               onClick={(e) => {
-                e.preventDefault()
-                handlePageChange(currentPage - 1)
+                e.preventDefault();
+                handlePageChange(currentPage - 1);
               }}
               className={cn(currentPage > 1 ? "opacity-100" : "opacity-50 pointer-events-none")}
             />
@@ -175,12 +181,10 @@ export default function ReviewsGrid() {
               <PaginationLink
                 href="#"
                 onClick={(e) => {
-                  e.preventDefault()
-                  handlePageChange(page)
+                  e.preventDefault();
+                  handlePageChange(page);
                 }}
-                className={cn(
-                  page === currentPage ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-muted",
-                )}
+                className={cn(page === currentPage ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-muted")}
               >
                 {page}
               </PaginationLink>
@@ -191,8 +195,8 @@ export default function ReviewsGrid() {
             <PaginationNext
               href="#"
               onClick={(e) => {
-                e.preventDefault()
-                handlePageChange(currentPage + 1)
+                e.preventDefault();
+                handlePageChange(currentPage + 1);
               }}
               className={cn(currentPage < totalPages ? "opacity-100" : "opacity-50 pointer-events-none")}
             />
@@ -200,5 +204,5 @@ export default function ReviewsGrid() {
         </PaginationContent>
       </Pagination>
     </div>
-  )
+  );
 }
